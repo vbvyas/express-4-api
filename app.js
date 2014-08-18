@@ -12,7 +12,15 @@ var port = process.env.PORT || 3000;
 
 
 // API routes
+var router = express.Router();
 
+// test route
+router.get('/', function (req, res) {
+  res.json({ message: 'App is running.' });
+});
+
+// other routes
+app.use('/api', router);
 
 // start server
 app.listen(port);
