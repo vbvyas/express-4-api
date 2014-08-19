@@ -2,6 +2,9 @@
 var express = require('express');
 var app = express();
 var parser = require('body-parser');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1/testdb');
+var Test = require('./app/models/test');
 
 // configure app to use body parser
 app.use(parser.urlencoded({ extended: true }));
