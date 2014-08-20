@@ -17,6 +17,23 @@ var port = process.env.PORT || 3000;
 // API routes
 var router = express.Router();
 
+// middleware for all requests
+router.use(function (req, res, next) {
+  console.log("Next...");
+  next();
+});
+
+// test routes
+router.route('/test')
+  // POST http://localhost:3000/api/test
+  .post(function (req, res) {
+    var test = new Test();
+    test.name = req.body.name;
+    test.save(function (err) {
+      if (err) res.send(err);
+      res.json({ message: 'Model posted' });
+  });
+
 // test route
 router.get('/', function (req, res) {
   res.json({ message: 'App is running.' });
