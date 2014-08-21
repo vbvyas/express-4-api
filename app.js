@@ -32,6 +32,13 @@ router.route('/test')
     test.save(function (err) {
       if (err) res.send(err);
       res.json({ message: 'Model posted' });
+  })
+
+  // GET http://localhost:3000/api/test
+  .get(function (req, res) {
+    Test.find(function (err, data) {
+      if (err) res.send(err);
+      res.json(data);
   });
 
 // test route
