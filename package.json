@@ -1,9 +1,13 @@
 {
   "name": "express-api",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vbvyas/express-4-api"
+  },
   "dependencies": {
     "express": "~4.0.0",
-    "mongoose": "~3.6.13",
+    "lowdb": "0.3.1",
     "body-parser": "~1.0.1"
   }
 }
