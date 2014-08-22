@@ -39,6 +39,15 @@ router.route('/test')
     Test.find(function (err, data) {
       if (err) res.send(err);
       res.json(data);
+    })
+  })
+
+  // GET http://localhost:3000/api/test/:id
+  .get(function (req, res) {
+    Test.findById(req.params.id, function (err, data) {
+      if (err) res.send(err);
+      res.json(data);
+    })
   });
 
 // test route
