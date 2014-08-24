@@ -1,12 +1,12 @@
 // dependencies
 var express = require('express');
 var app = express();
-var parser = require('body-parser');
+var bodyParser = require('body-parser');
 var low = require('lowdb');
 
 // configure app to use body parser
-app.use(parser.urlencoded({ extended: true }));
-app.use(parser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // set port
 var port = process.env.PORT || 3000;
@@ -24,18 +24,21 @@ router.use(function (req, res, next) {
 router.route('/test')
   // POST http://localhost:3000/api/test
   .post(function (req, res) {
+    console.log("body", req.body);
     low('test').insert({ name: req.body.name });
-    res.json({ message: 'Model posted' });
+    res.json({ message: req.body.name });
   })
 
   // GET http://localhost:3000/api/test
   .get(function (req, res) {
     var data = low('test');
     res.json(data);
-  })
+  });
 
-  // GET http://localhost:3000/api/test/:id
+// GET http://localhost:3000/api/test/:id
+router.route('/test/:id')
   .get(function (req, res) {
+    console.log("params", req.params);
     var data = low('test').where({ id: req.params.id });
     res.json(data);
   });
