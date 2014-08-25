@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var low = require('lowdb');
 
 // configure app to use body parser
+// body parser with express-4 currently not working
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -38,14 +39,17 @@ router.route('/test')
 // GET http://localhost:3000/api/test/:id
 router.route('/test/:id')
   .get(function (req, res) {
-    console.log("params", req.params);
     var data = low('test').where({ id: req.params.id });
     res.json(data);
   });
 
-// test route
+// test routes
 router.get('/', function (req, res) {
   res.json({ message: 'App is running.' });
+});
+
+router.get('/ping', function (req, res) {
+  res.json({ message: 'pong' });
 });
 
 // other routes
