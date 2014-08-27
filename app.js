@@ -44,6 +44,9 @@ router.route('/test/:id')
   })
 
   .put(function (req, res) {
+    var data = low('test').where({ id: req.params.id });
+    low('test').update({ name: req.body.name });
+    res.json({ message: 'Updated' });
   });
 
 // test routes
