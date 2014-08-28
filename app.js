@@ -45,8 +45,15 @@ router.route('/test/:id')
 
   .put(function (req, res) {
     var data = low('test').where({ id: req.params.id });
-    low('test').update({ name: req.body.name });
+    data.name = req.body.name;
+    low('test').update(data);
     res.json({ message: 'Updated' });
+  })
+
+  .delete(function (req, res) {
+    var data = low('test').where({ id: req.params.id });
+    low('test').remove(data);
+    res.json({ message: 'Deleted' });
   });
 
 // test routes
